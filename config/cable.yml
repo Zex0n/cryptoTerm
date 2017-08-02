@@ -1,9 +1,11 @@
+production:
+  adapter: postgresql
+  url: postgres://<%= ENV['DB_HOST'] %>/<%= ENV['DB_NAME'] %>
+
 development:
-  adapter: async
+  adapter: postgresql
+  url: postgres://<%= ENV['DB_HOST'] %>/<%= ENV['DB_NAME'] %>
 
 test:
-  adapter: async
-
-production:
-  adapter: redis
-  url: redis://localhost:6379/1
+  adapter: postgresql
+  url: postgres://<%= ENV['DB_HOST'] %>/<%= ENV['DB_NAME'] %>
