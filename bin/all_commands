@@ -11,3 +11,5 @@ $ docker-compose run web bundle exec rake db:migrate
 
 To run the Rails console:
 $ docker-compose run web bundle exec rails c
+
+bundle
