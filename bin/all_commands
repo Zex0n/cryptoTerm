@@ -1,5 +1,5 @@
 #https://github.com/adelevie/docker-compose-rails
-
+https://github.com/rails/actioncable-examples
 
 To run any Rails or Ruby command, prepend it with docker-compose run web. For example, to create a migration:
 $ docker-compose run web bundle exec rails g migration CreatePosts title:string body:text
