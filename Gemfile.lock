@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/tradingview/tv_chart_rails.git
+  revision: b6ea618d65120405a8b5b33ccabb1e3f2a51121e
+  specs:
+    tv_chart_rails (1.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -262,6 +268,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
+  tv_chart_rails!
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console
