@@ -9,7 +9,7 @@ function showTradingViewChart(params)
     interval: 'D',
     container_id: "tv_chart_container",
     //	BEWARE: no trailing slash is expected in feed URL
-    datafeed: new Datafeeds.UDFCompatibleDatafeed("http://demo_feed.tradingview.com"),
+    datafeed: new Datafeeds.UDFCompatibleDatafeed(""),
     library_path: "/assets/charting_library/",
     locale: "ru",
     //	Regression Trend-related functionality is not implemented yet, so it's hidden for a while
