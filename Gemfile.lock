@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/tradingview/tv_chart_rails.git
-  revision: b6ea618d65120405a8b5b33ccabb1e3f2a51121e
+PATH
+  remote: localgems/tv_chart_rails
   specs:
     tv_chart_rails (1.1.0)
 
