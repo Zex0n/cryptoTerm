@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'config', to: 'charts#configuration', format: 'json'
   get 'history', to: 'charts#history', format: 'json'
-  get 'time', to: 'charts#time', format: 'json'
+  get 'time', to: 'charts#time', format: 'text'
   get 'symbols', to: 'charts#symbols', format: 'json'
   get 'marks', to: 'charts#marks', format: 'json'
   get 'timescale_marks', to: 'charts#timescale_marks', format: 'json'
