@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+
+  resources :api_keys
+  resources :exchanges
   get 'config', to: 'charts#configuration', format: 'json'
   get 'history', to: 'charts#history', format: 'json'
   get 'time', to: 'charts#time', format: 'text'

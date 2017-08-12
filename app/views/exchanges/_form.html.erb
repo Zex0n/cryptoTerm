@@ -1,0 +1,27 @@
+<%= form_with(model: exchange, local: true) do |form| %>
+  <% if exchange.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exchange.errors.count, "error") %> prohibited this exchange from being saved:</h2>
+
+      <ul>
+      <% exchange.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :exchange_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sort %>
+    <%= form.number_field :sort, id: :exchange_sort %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
