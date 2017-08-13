@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
   def index
     require 'bittrex'
-    @order = ApiKey.where(user: current_user).first
+    @apiKey = ApiKey.where(user: current_user).first
     Bittrex.config do |c|
-      c.key = @order.open
-      c.secret = @order.secret
+      c.key = @apiKey.open
+      c.secret = @apiKey.secret
     end
 
     @quote = Bittrex::Quote.current('BTC-ETH')
-    @history = Bittrex::Wallet
+    @history = Bittrex::Order.history
   end
 end
