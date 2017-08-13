@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      # These variables are special to the official PG image, see: https://hub.docker.com/_/postgres/
+      POSTGRES_DB: my-app # match DB_NAME from above
+      POSTGRES_USER: dbuser # match DB_USERNAME from above
+      POSTGRES_PASS: password123 # match DB_PASSWORD from above
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/myapp
+    environment:
+      DB_HOST: db # The "db" hostname will point at the container named "db" automatically (defined below)
+      # The following can be changed to whatever you want
+      DB_NAME: my-app
+      DB_USERNAME: dbuser
+      DB_PASSWORD: password123
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
