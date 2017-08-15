@@ -18,6 +18,54 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  messages:
+    no_access: "Access denied."
+  buttons:
+    back: "Go back"
+    recover_password: "Recover password"
+    profile: "Profile"
+  controllers:
+    trades: Trades
+    orders_histories: Order History
+    coins: Coins
+    exchanges: Exchanges
+    api: API keys
+    users: Users
+  sign_in: Sign in
+  sign_up: Register
+  sign_out: Log out
+
+  activerecord:
+    errors:
+      models:
+        orders_history:
+          attributes:
+            round_id: 
+              inclusion: could be in range of 1..999
+
+    attributes:
+      user:
+        username: Username
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        current_password: Current password
+
+  time:
+    today: Today
+    yesterday: Yesterday
+    at: " "
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Back"
+      next: "Next &rsaquo;"
+      truncate: "..."
+
+
+  unauthorized:
+    default_message: "You do not have enough power to do it. Yet."
+    manage:
+      all: "You do not have enough power to do it. Yet."

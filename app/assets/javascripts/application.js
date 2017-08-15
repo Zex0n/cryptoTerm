@@ -2,15 +2,30 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
+// compiled file.
 //
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
 //= require jquery
+//= require select2
 //= require jquery_ujs
+//= require jquery-ui/effects/effect-highlight
+//= require jquery-ui/effects/effect-shake
 //= require turbolinks
+//= require twitter/bootstrap
+//= require editable/bootstrap-editable
+//= require editable/rails
 //= require_tree .
+
+function slide_row(object) {
+  object.closest('tr')
+      .children('td')
+      .animate({ padding: 0 })
+      .wrapInner('<div />')
+      .children()
+      .slideUp("normal", function() { object.closest('tr').remove(); });
+}

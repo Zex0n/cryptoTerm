@@ -1,0 +1,17 @@
+tr data-trade-id=trade.id
+  /td = trade.user.username
+  td 
+    p.coin-tag
+      / .coin-tag.label.label-default = trade.coin.name
+      = link_to trade.coin.name, trade, class: "coin-link-big label label-primary"
+    p 
+     small = ftime trade.last_trade
+  td width="60%"
+    table.trade-stats-table
+      = render "stats_table", trade: trade
+
+  td.text-cnt: .btn-group
+      = link_to fa_icon("refresh", text: "Refresh"), refresh_trade_path(trade), class: "btn btn-success", method: 'post', remote: true
+      = link_show(trade_path_with_username(trade))
+      / = link_to 'Edit', edit_trade_path(trade), class: "btn btn-md btn-primary"
+      = link_destroy(trade, remote: true)  if can? :destroy, trade

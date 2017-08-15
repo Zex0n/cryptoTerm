@@ -1,4 +1,5 @@
 class ExchangesController < ApplicationController
+  before_action :require_admin!
   before_action :set_exchange, only: [:show, :edit, :update, :destroy]
 
   # GET /exchanges
@@ -69,6 +70,6 @@ class ExchangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exchange_params
-      params.require(:exchange).permit(:name, :sort)
+      params.require(:exchange).permit(:name, :short_name, :url)
     end
 end

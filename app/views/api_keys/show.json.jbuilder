@@ -1,1 +1,1 @@
-json.partial! "api_keys/api_key", api_key: @api_key
+json.extract! @api, :id, :user_id, :exchange_id, :key, :secret, :created_at, :updated_at

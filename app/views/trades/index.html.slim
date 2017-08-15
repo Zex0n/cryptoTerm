@@ -1,0 +1,34 @@
+.clearfix
+- if can? :create, Trade
+  .col-xs.12
+    .btn-group.pull-right
+      button class="btn btn-primary" data-toggle="modal" data-target="#modal-manual-history" 
+        span.glyphicon.glyphicon-pencil
+        |  Add manually
+      button class="btn btn-primary" data-toggle="modal" data-target="#modal-import-history" 
+        span.glyphicon.glyphicon-cloud-download
+        |  Import from exchange
+
+- if @trades.present?
+  h1 = "Listing trades of user #{params[:username] || current_user.try(:username)}"
+
+.table-responsive
+  table#trades-table.table.table-striped.table-bordered
+    thead
+      tr
+        /th User
+        th Coin
+        th.text-center Stats
+        th
+
+    tbody
+      - if @trades.present?
+        - @trades.each do |trade|
+          = render trade
+      - else
+        tr.autohide
+          td colspan="4": h1.cnt Here will be your trade history.
+
+- if can? :create, Trade
+  = render 'import'
+  = render 'manual'

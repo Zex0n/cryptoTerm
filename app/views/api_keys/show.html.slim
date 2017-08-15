@@ -1,0 +1,26 @@
+.page-header
+  = link_to api_keys_path, :class => 'btn btn-default' do
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_api_key_path(@api_key), :class => 'btn btn-primary' do
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show api
+dl.dl-horizontal
+  dt
+    | User:
+  dd
+    = @api_key.user
+  dt
+    | Exchange:
+  dd
+    = @api_key.exchange
+  dt
+    | Key:
+  dd
+    = @api_key.key
+  dt
+    | Id api:
+  dd
+    = @api_key.secret
