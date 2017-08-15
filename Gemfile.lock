@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/Vizakenjack/ruby-bittrex-api.git
-  revision: 49cc087261861f7d65f909d700d296d225d36f52
+  remote: https://github.com/Zex0n/ruby-bittrex-api.git
+  revision: d52432b03dc03fa7d2ac174835f9c06a9c9ff900
   specs:
     bittrex (1.0.0)
       json

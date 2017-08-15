@@ -30,9 +30,9 @@ module ApplicationHelper
     end
   end
 
-  def btc_format(price, options = {colored: true, bold: true})
+  def btc_format(price, options = {colored: true, bold: true, precision: 8})
     html_class = []
-    output = price == 0 ? "฿0.000" : "฿#{number_with_precision price, precision: 3}"
+    output = price == 0 ? "฿#{number_with_precision 0, precision: options[:precision]}" : "฿#{number_with_precision price, precision: options[:precision]}"
     
     html_class << "bold" if options[:bold] and (price > 1 or price < -1)
     html_class << "red" if options[:colored] and price < 0

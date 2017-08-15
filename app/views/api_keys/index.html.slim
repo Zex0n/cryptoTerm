@@ -1,6 +1,7 @@
 - if @api_keys.any?
   = link_to "Add new API keys", new_api_key_path, class: "btn btn-primary btn-md pull-right"
   h1 Your API keys
+  = @trx.inspect
   .table-responsive
     table.table.table-striped.table-bordered.table-hover
       thead

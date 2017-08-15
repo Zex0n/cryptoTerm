@@ -160,7 +160,7 @@ class OrdersHistory < ActiveRecord::Base
 
   private
 
-  def user_user_total_recount
+  def user_total_recount
     self.user.total_recount
   end
 

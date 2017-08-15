@@ -10,7 +10,7 @@ class CoinsController < ApplicationController
 
   def load
     if request.post?
-      api = current_user.api.first
+      api = current_user.api_keys.first
       Coin.autoupdate
       flash[:notice] = "Added new coins!"
       redirect_to coins_path

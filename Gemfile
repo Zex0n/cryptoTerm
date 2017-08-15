@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bittrex'
 # gem 'bittrex', :git => 'https://github.com/Zex0n/bittrex.git'
 #gem 'tv_chart_rails', :git => 'https://github.com/Zex0n/tv_chart_rails.git'
-gem 'bittrex', :git => 'https://github.com/Vizakenjack/ruby-bittrex-api.git'
+gem 'bittrex', :git => "https://github.com/Zex0n/ruby-bittrex-api.git"
 # gem 'bittrex', git: 'git://github.com/Vizakenjack/ruby-bittrex-api.git'
 group :development, :test do
   gem 'byebug', platform: :mri
