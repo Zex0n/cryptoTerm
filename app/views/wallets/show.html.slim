@@ -1,0 +1,36 @@
+.page-header
+  = link_to wallets_path, :class => 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_wallet_path(@wallet), :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show wallet
+dl.dl-horizontal
+
+  dt
+    | Exchange:
+  dd
+    = @wallet.exchange.name
+
+  dt
+    | Coin:
+  dd
+    = @wallet.coin.name
+
+  dt
+    | Balance:
+  dd
+    = @wallet.balance
+
+  dt
+    | Available:
+  dd
+    = @wallet.available
+
+  dt
+    | Pending:
+  dd
+    = @wallet.pending
+

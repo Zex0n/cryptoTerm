@@ -8,7 +8,6 @@ class ApiKey < ActiveRecord::Base
   validates :secret, uniqueness: true, length: { minimum: 6 }, :format => { :with => /\A[a-z0-9\s]+\z/i }
   validates :name, presence: true, length: { in: 2..14 }
 
-  require 'bittrex'
   def strip_whitespace
     self.key.gsub!(/\s+/, '')
     self.secret.gsub!(/\s+/, '')
@@ -32,7 +31,7 @@ class ApiKey < ActiveRecord::Base
   end
 
   def self.system
-    ## todo: fix it ##
+    ## todo: fix it for many exchanges ##
     self.first
   end
 

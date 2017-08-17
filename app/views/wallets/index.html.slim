@@ -1,0 +1,56 @@
+.page-header
+  = link_to new_wallet_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Wallet
+  h1
+    | Listing wallets
+
+= link_to "Load", load_wallets_path, method: "post", class: 'btn btn-primary'
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+
+        th
+          | Exchange
+
+        th
+          | Coin
+
+        th
+          | Balance
+
+        th
+          | Available
+
+        th
+          | Pending
+
+        th
+        th
+        th
+    tbody
+      - @wallets.each do | wallet |
+        tr
+
+          td
+            = wallet.exchange.name
+
+          td
+            = wallet.coin.name
+
+          td
+            = wallet.balance
+
+          td
+            = wallet.available
+
+          td
+            = wallet.pending
+
+          td
+            = link_to 'Show', wallet
+          td
+            = link_to 'Edit', edit_wallet_path(wallet) 
+          td
+            = link_to 'Destroy', wallet, method: :delete, data: { confirm: 'Are you sure?' } 

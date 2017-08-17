@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     delete 'destroy_all', on: :collection, as: "delete"
   end
 
+  resources :wallets do
+    get 'load', on: :collection
+    post 'load', on: :collection
+    delete 'destroy_all', on: :collection, as: "delete"
+  end
+
   get 'console' => 'application#console'
   root to: "application#index"
 end

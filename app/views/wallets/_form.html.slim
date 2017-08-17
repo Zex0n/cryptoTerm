@@ -1,0 +1,12 @@
+= simple_form_for(@wallet) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :exchange
+    = f.association :coin
+    = f.input :balance
+    = f.input :available
+    = f.input :pending
+
+  .form-actions
+    = f.button :submit

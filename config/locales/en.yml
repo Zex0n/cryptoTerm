@@ -30,7 +30,7 @@ en:
     orders_histories: Order History
     coins: Coins
     exchanges: Exchanges
-    api: API keys
+    api_keys: API keys
     users: Users
   sign_in: Sign in
   sign_up: Register

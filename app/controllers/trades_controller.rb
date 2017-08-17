@@ -15,7 +15,7 @@ class TradesController < ApplicationController
 
   def debug
     user = User.where(username: params[:username]).first
-    api = user.api.first
+    api = user.api_keys.first
     trx = Bittrex.new(api.key, api.secret)
     @history = trx.order_history(params[:coin], 500)
     
@@ -69,7 +69,7 @@ class TradesController < ApplicationController
     coin = @trade.coin
     coin.update_price
     authorize! :edit, @trade
-    current_user.api.all.each do |api|
+    current_user.api_keys.all.each do |api|
       # todo: fix exchanges
       exchange = Bittrex.new(api.key, api.secret)
       history = exchange.order_history(coin.tag, 500)
