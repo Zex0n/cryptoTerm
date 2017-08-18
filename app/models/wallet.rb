@@ -32,6 +32,8 @@ class Wallet < ApplicationRecord
         balance_in_base.save!
       end
     end
+
+    Coin.autoupdate
   end
 
 end

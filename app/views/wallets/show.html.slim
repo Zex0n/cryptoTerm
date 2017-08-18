@@ -12,25 +12,30 @@ dl.dl-horizontal
   dt
     | Exchange:
   dd
-    = @wallet.exchange.name
+    = @wallet.exchange.name if @wallet.exchange
 
   dt
     | Coin:
   dd
-    = @wallet.coin.name
+    = @wallet.coin.name if @wallet.coin
 
   dt
     | Balance:
   dd
-    = @wallet.balance
+    = price_format @wallet.balance if @wallet.balance
 
   dt
     | Available:
   dd
-    = @wallet.available
+    = price_format @wallet.available if @wallet.available
 
   dt
     | Pending:
   dd
-    = @wallet.pending
+    = price_format @wallet.pending if @wallet.pending
+
+  dt
+    | Buy price:
+  dd
+    = price_format @wallet.buy_price if @wallet.buy_price
 

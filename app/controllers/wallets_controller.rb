@@ -28,22 +28,21 @@ class WalletsController < ApplicationController
 
   # GET /wallets/new
   def new
+    authorize! :create, Wallet
     @wallet = Wallet.new
   end
 
   # GET /wallets/1/edit
   def edit
+    authorize! :edit, @wallet
   end
 
   # POST /wallets
   # POST /wallets.json
   def create
     authorize! :create, Wallet
-    # ToDo need parser
-    # parser = Wallet.new(params, current_user)
-    # @result = parser.result
-
     @wallet = Wallet.new(wallet_params)
+    @wallet.user = current_user
 
     respond_to do |format|
       if @wallet.save
@@ -59,6 +58,7 @@ class WalletsController < ApplicationController
   # PATCH/PUT /wallets/1
   # PATCH/PUT /wallets/1.json
   def update
+    authorize! :edit, @wallet
     respond_to do |format|
       if @wallet.update(wallet_params)
         format.html { redirect_to @wallet, notice: 'Wallet was successfully updated.' }
@@ -73,6 +73,7 @@ class WalletsController < ApplicationController
   # DELETE /wallets/1
   # DELETE /wallets/1.json
   def destroy
+    authorize! :destroy, @wallet
     @wallet.destroy
     respond_to do |format|
       format.html { redirect_to wallets_url, notice: 'Wallet was successfully destroyed.' }
@@ -88,6 +89,6 @@ class WalletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wallet_params
-      params.require(:wallet).permit(:user_id, :exchange_id, :coin_id, :balance, :available, :pending)
+      params.require(:wallet).permit(:exchange_id, :coin_id, :balance, :available, :pending, :buy_price)
     end
 end

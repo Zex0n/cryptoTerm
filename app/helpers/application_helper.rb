@@ -23,10 +23,11 @@ module ApplicationHelper
   def price_format(price, precision = 8)
     if price == 0
       "0.00"
-    elsif price < 1
-      number_with_precision price, precision: precision
+    # elsif price < 1
     else
-      number_with_precision price, precision: 3
+      number_with_precision price, precision: precision
+    # else
+    #   number_with_precision price, precision: 3
     end
   end
 
@@ -40,6 +41,12 @@ module ApplicationHelper
 
     
     content_tag(:span, output, class: html_class.join(" "))
+  end
+
+  def  percent_calculate (price1, price2)
+    number = ((price1 != 0) ? ((price2.to_f / price1.to_f) * 100) : 0.0)
+    per = "#{number_with_precision number, precision: 2}%"
+    content_tag(:span,per)
   end
 
 

@@ -27,6 +27,15 @@
           | Pending
 
         th
+          | Buy Price
+
+        th
+          | Current Price
+
+        th
+          | Changes
+
+        th
         th
         th
     tbody
@@ -34,19 +43,28 @@
         tr
 
           td
-            = wallet.exchange.name
+            = wallet.exchange.name if wallet.exchange
 
           td
-            = wallet.coin.name
+            = wallet.coin.name if wallet.coin
 
           td
-            = wallet.balance
+            = price_format wallet.balance if wallet.balance
 
           td
-            = wallet.available
+            = price_format wallet.available if wallet.available
 
           td
-            = wallet.pending
+            = price_format wallet.pending if wallet.pending
+
+          td
+            = price_format wallet.buy_price if wallet.buy_price
+
+          td
+            = price_format wallet.coin.current_price if wallet.coin
+
+          td
+            = percent_calculate price_format(wallet.buy_price), price_format(wallet.coin.current_price) if wallet.coin and wallet.buy_price
 
           td
             = link_to 'Show', wallet
