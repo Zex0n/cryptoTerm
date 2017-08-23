@@ -65,6 +65,21 @@ class TradesController < ApplicationController
   end
 
   def refresh
+=begin
+    # ToDo parse csv file
+    # https://github.com/tilo/smarter_csv
+
+    if params[:file]
+      lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
+      lines.shift #remove first line
+      lines.each do |l|
+        m = l.match(/(\S+)\s(\d+)\s(\S+)/) #parse line
+        Student.create {name: m[1],age: m[2], occupation: m[3]}
+      end
+    end
+
+
+=end
     @trade = Trade.includes(:coin, {user: :api}).find(params[:id])
     coin = @trade.coin
     coin.update_price
@@ -111,6 +126,12 @@ class TradesController < ApplicationController
       format.html { redirect_to trades_url, notice: 'Trade was successfully destroyed.' }
       format.js
     end
+  end
+
+  def csv_import
+    authorize! :create, Trade
+
+
   end
 
   private

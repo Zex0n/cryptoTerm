@@ -92,4 +92,8 @@ class Trade < ActiveRecord::Base
     round.rounds = nil
     round.save!
   end
+
+  def csv_import(arrayImport)
+
+  end
 end

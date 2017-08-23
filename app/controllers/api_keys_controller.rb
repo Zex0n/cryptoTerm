@@ -2,6 +2,7 @@ class ApiKeysController < ApplicationController
   before_action :set_api_key, only: [:sync, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+
   # GET /api
   # GET /api.json
   def index

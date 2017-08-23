@@ -1,17 +1,20 @@
 #modal-import-history.modal.fade
   .modal-dialog
     .modal-content
-      = simple_form_for(@orders_history, url: trades_path, :html => { :class => 'form-vertical' }, remote: true) do |f|
+      = simple_form_for(@orders_history, url: trades_path, multipart: true, :html => { :class => 'form-vertical' }, remote: true, authenticity_token: true) do |f|
         .modal-header
-          button.close data-dismiss="modal" type="button" 
+          button.close data-dismiss="modal" type="button"
             span aria-hidden="true"  &times;
             span.sr-only Close
           h4.modal-title Import history from exchange
         .modal-body.row
           .col-md-6.col-md-offset-3
-            = f.association :coin, include_blank: false, input_html: {class: "select2", multiple: true}
+            = f.association :coin, include_blank: "All", input_html: {class: "select2", multiple: true}
             = f.association :exchange, include_blank: false, input_html: {class: "select2"}
             = f.input :api_id, collection: current_user.api_keys.to_a, include_blank: false, label_method: lambda { |e| e.name }, wrapper_html: {class: "#{'hidden'  if current_user.api_keys.size == 1} "}
+            p Select CSV file if you have, or do not choose file for automatic import
+            p
+              = file_field_tag :file
         .modal-footer
           button.btn.btn-default data-dismiss="modal" type="button"  Close
           = f.submit 'Add', :class => 'btn btn-primary', data: { "disable-with" => "Creating..." }
