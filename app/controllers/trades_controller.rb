@@ -50,8 +50,33 @@ class TradesController < ApplicationController
   # POST /trades.json
   def create
     authorize! :create, Trade
-    parser = CoinParser.new(params, current_user)
-    @result = parser.result
+
+
+    # ToDo parse csv file
+    # https://github.com/tilo/smarter_csv
+
+    if params[:file]
+      File.open(params[:file].tempfile, "r:bom|utf-8") do |f|
+        @csv = SmarterCSV.process(f);
+      end
+
+      @result = {:message => @csv[2].inspect, :status => :success}
+
+      print(@csv)
+
+=begin
+      lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
+      lines.shift #remove first line
+      lines.each do |l|
+        m = l.match(/(\S+)\s(\d+)\s(\S+)/) #parse line
+        Student.create {name: m[1],age: m[2], occupation: m[3]}
+      end
+=end
+
+    else
+      parser = CoinParser.new(params, current_user)
+      @result = parser.result
+    end
 
     respond_to do |format|
       format.html {
@@ -65,21 +90,6 @@ class TradesController < ApplicationController
   end
 
   def refresh
-=begin
-    # ToDo parse csv file
-    # https://github.com/tilo/smarter_csv
-
-    if params[:file]
-      lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
-      lines.shift #remove first line
-      lines.each do |l|
-        m = l.match(/(\S+)\s(\d+)\s(\S+)/) #parse line
-        Student.create {name: m[1],age: m[2], occupation: m[3]}
-      end
-    end
-
-
-=end
     @trade = Trade.includes(:coin, {user: :api}).find(params[:id])
     coin = @trade.coin
     coin.update_price

@@ -1,7 +1,7 @@
 #modal-import-history.modal.fade
   .modal-dialog
     .modal-content
-      = simple_form_for(@orders_history, url: trades_path, multipart: true, :html => { :class => 'form-vertical' }, remote: true, authenticity_token: true) do |f|
+      = simple_form_for(@orders_history, url: trades_path, :html => { :class => 'form-vertical', multipart: true }, remote: true, authenticity_token: true) do |f|
         .modal-header
           button.close data-dismiss="modal" type="button"
             span aria-hidden="true"  &times;
