@@ -55,9 +55,12 @@ class TradesController < ApplicationController
     # ToDo parse csv file
     # https://github.com/tilo/smarter_csv
 
+
     if params[:file]
-      File.open(params[:file].tempfile, "r:bom|utf-8") do |f|
-        @csv = SmarterCSV.process(f);
+
+      options = {:file_encoding => "UTF-16"}
+      File.open(params[:file].tempfile, "r:UTF-16LE") do |f|
+        @csv = SmarterCSV.process(f, options);
       end
 
       @result = {:message => @csv[2].inspect, :status => :success}

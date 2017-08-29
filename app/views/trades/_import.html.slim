@@ -15,6 +15,12 @@
             p Select CSV file if you have, or do not choose file for automatic import
             p
               = file_field_tag :file
+            ul
+              li 1. Login into your Bittrex Account
+              li 2. Open "Orders" over the top navigation (https://bittrex.com/History)
+              li 3. Click on the "Load All" button above the table. (Do not click on the "CSV" button as this file and format is not supported)
+              li 4. Save the CSV file on your PC and upload it here
+
         .modal-footer
           button.btn.btn-default data-dismiss="modal" type="button"  Close
           = f.submit 'Add', :class => 'btn btn-primary', data: { "disable-with" => "Creating..." }
