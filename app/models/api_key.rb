@@ -35,4 +35,9 @@ class ApiKey < ActiveRecord::Base
     self.first
   end
 
+  def self.list
+    ## todo: fix it for many exchanges ##
+    self.all
+  end
+
 end

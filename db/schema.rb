@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818183123) do
+ActiveRecord::Schema.define(version: 20170831195231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170818183123) do
     t.float "current_volume", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "exchange_id"
+    t.index ["exchange_id"], name: "index_coins_on_exchange_id"
   end
 
   create_table "exchanges", force: :cascade do |t|
@@ -135,6 +137,7 @@ ActiveRecord::Schema.define(version: 20170818183123) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "coins", "exchanges"
   add_foreign_key "wallets", "coins"
   add_foreign_key "wallets", "exchanges"
   add_foreign_key "wallets", "users"
