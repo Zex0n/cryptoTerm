@@ -28,3 +28,23 @@ dl.dl-horizontal
     | Current volume:
   dd
     = @coin.current_volume
+
+
+  #tv_chart_container
+
+
+  javascript:
+      showTradingViewChart(
+        {
+    //        supports_search: false,
+            width: '100%',
+            autosize: true,
+            fullscreen: true,
+            symbol: 'BBT',
+            datafeed: new Datafeeds.UDFCompatibleDatafeed("http://#{request.env["HTTP_HOST"]}"),
+            disabled_features: ["header_saveload"],
+    //        https://bittrex.com/Api/v2.0/pub/market/GetTicks?marketName=BTC-WAVES&tickInterval=thirtyMin&_=1499127220008
+    //        debug: true,
+    //        autosize: true,
+          }
+      );
