@@ -1,4 +1,6 @@
 class Coin < ActiveRecord::Base
+  belongs_to :exchange
+
   default_scope { order('name') }
 
   def update_price

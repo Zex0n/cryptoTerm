@@ -74,13 +74,16 @@ class TradesController < ApplicationController
         price = csv[:limit]
 
         if csv[:exchange].include? "-"
-          csv[:exchange].sub("BTC-", "")
+          csv_coin_name = csv[:exchange].sub("BTC-", "")
         end
-        coin_obj = Coin.find_by_name(csv[:exchange])
-
+        coin_obj = Coin.find_by_name(csv_coin_name)
+        print(csv_coin_name)
         if coin_obj
-          one_param = {:orders_history=>{:coin_id=>coin_obj.pk, :exchange_id=>params[:exchange_id], :order_type=>order_type, :amount=>amount, :price=>price}}
+          one_param = {:orders_history=>{:coin_id=>coin_obj.id, :exchange_id=>params[:exchange_id], :order_type=>order_type, :amount=>amount, :price=>price}}
           parser = CoinParser.new(one_param, current_user)
+          parser.result
+          print(one_param)
+          print("\n\r\n\r")
         end
       end
 

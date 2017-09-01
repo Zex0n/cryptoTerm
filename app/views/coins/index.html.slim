@@ -23,6 +23,8 @@
         th
           | Current volume
         th
+          | Exchange
+        th
         th
         th
     tbody
@@ -38,6 +40,8 @@
             = price_format coin.current_price
           td
             = price_format coin.current_volume
+          td
+            = coin.exchange.name
           td
             = link_to 'Show', coin
           td
