@@ -60,12 +60,33 @@ class TradesController < ApplicationController
 
       options = {:file_encoding => "UTF-16"}
       File.open(params[:file].tempfile, "r:UTF-16LE") do |f|
-        @csv = SmarterCSV.process(f, options);
+        @csvs = SmarterCSV.process(f, options);
+      end
+      @csvs.each do |csv|
+        order_type = ""
+        if csv[:type] == "LIMIT_BUY"
+          order_type = "Buy"
+        elsif csv[:type] == "LIMIT_SELL"
+          order_type = "Sell"
+        end
+
+        amount = csv[:quantity]
+        price = csv[:limit]
+
+        if csv[:exchange].include? "-"
+          csv[:exchange].sub("BTC-", "")
+        end
+        coin_obj = Coin.find_by_name(csv[:exchange])
+
+        if coin_obj
+          one_param = {:orders_history=>{:coin_id=>coin_obj.pk, :exchange_id=>params[:exchange_id], :order_type=>order_type, :amount=>amount, :price=>price}}
+          parser = CoinParser.new(one_param, current_user)
+        end
       end
 
-      @result = {:message => @csv[2].inspect, :status => :success}
+      @result = {:message => "Successfully imported", :status => :success}
 
-      print(@csv)
+      print(@csvs)
 
 =begin
       lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
@@ -77,6 +98,7 @@ class TradesController < ApplicationController
 =end
 
     else
+      print(params)
       parser = CoinParser.new(params, current_user)
       @result = parser.result
     end

@@ -14,8 +14,12 @@ class CoinParser
       coins = coins_to_array(@params[:orders_history][:coin_id])
       coins_to_result(coins)
     else
-      coin = Coin.find(@params[:orders_history][:coin_id])
-      @result = OrdersHistory.add_manual(@current_user.id, @params)
+      if (@params[:orders_history][:coin_id] != '')
+        coin = Coin.find(@params[:orders_history][:coin_id])
+        @result = OrdersHistory.add_manual(@current_user.id, @params)
+      else
+        @result = { status: :error, message: "You must select the coin" }
+      end
     end
   end
 
