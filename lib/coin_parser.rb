@@ -9,12 +9,15 @@ class CoinParser
 
   def process
     if api = request_with_api
+      print "API REQUEST"
       @trx = Bittrex.new(api.key, api.secret)
       # todo: fix exchanges
       coins = coins_to_array(@params[:orders_history][:coin_id])
       coins_to_result(coins)
     else
+      print "MANUAL ADD REQUEST"
       if (@params[:orders_history][:coin_id] != '')
+        print "             COIN ID != ''             "
         coin = Coin.find(@params[:orders_history][:coin_id])
         @result = OrdersHistory.add_manual(@current_user.id, @params)
       else

@@ -52,14 +52,19 @@ class OrdersHistory < ActiveRecord::Base
    
 
   def self.add_manual(user_id, oh_params)
+    print "                MANUAL METHOD              "
     coin = Coin.find oh_params[:orders_history][:coin_id]
     coin_hash = CoinHash.new(coin)
     params = { coin_id: coin.id, user_id: user_id, exchange_id: oh_params[:orders_history][:exchange_id] }
 
     OrdersHistory.transaction do
       filler = ManualFiller.new(oh_params[:orders_history])
+      print "\n\r\n\r\n\r\n\r\n\r\n\r"
+      print (filler.inspect)
       params.merge!(filler.output)
 
+      print "\n\r\n\r\n\r\n\r\n\r\n\r"
+      print (filler.inspect)
       order = self.new(params)
       coin_hash.add_filler_to_hash(filler)  if order.new_record? and filler.present?
       return { status: :error, message: order.errors.full_messages }  unless order.save
