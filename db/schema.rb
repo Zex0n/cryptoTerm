@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 20170831195231) do
     t.decimal "pending", precision: 30, scale: 10, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "buy_price", precision: 30, scale: 10, default: "0.0", null: false
     t.index ["coin_id"], name: "index_wallets_on_coin_id"
     t.index ["exchange_id"], name: "index_wallets_on_exchange_id"
     t.index ["user_id"], name: "index_wallets_on_user_id"

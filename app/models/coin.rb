@@ -30,7 +30,7 @@ class Coin < ActiveRecord::Base
         if coin['Bid'] && coin['Ask']
           coin_in_base.current_price = (coin['Bid'] + coin['Ask']) / 2
           coin_in_base.current_volume = (coin["BaseVolume"] || 0.0)
-          coin_in_base.exchange_id = api_exchange
+          coin_in_base.exchange_id = api_exchange.id
           coin_in_base.save!
         end
       end

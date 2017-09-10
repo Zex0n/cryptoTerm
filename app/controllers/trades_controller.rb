@@ -51,13 +51,7 @@ class TradesController < ApplicationController
   def create
     authorize! :create, Trade
 
-
-    # ToDo parse csv file
-    # https://github.com/tilo/smarter_csv
-
-
     if params[:file]
-
       options = {:file_encoding => "UTF-16"}
       File.open(params[:file].tempfile, "r:UTF-16LE") do |f|
         @csvs = SmarterCSV.process(f, options);
@@ -73,25 +67,19 @@ class TradesController < ApplicationController
         amount = csv[:quantity]
         price = csv[:limit]
 
-        if csv[:exchange].include? "-"
-          csv_coin_name = csv[:exchange].sub("BTC-", "")
-        end
-        coin_obj = Coin.find_by_name(csv_coin_name)
-        print("\n\r\n\r")
-        print(csv_coin_name)
+        # if csv[:exchange].include? "-"
+        #   csv_coin_name = csv[:exchange].sub("BTC-", "")
+        # end
+
+        coin_obj = Coin.find_by_name(csv[:exchange])
         if coin_obj
           one_param = {:orders_history=>{:coin_id=>coin_obj.id, :exchange_id=>params[:orders_history][:exchange_id], :order_type=>order_type, :amount=>amount, :price=>price}}
           parser = CoinParser.new(one_param, current_user)
           @result = parser.result
-          print "PARAMS"
-          print(one_param)
-          print("\n\r\n\r")
         end
       end
 
       @result = {:message => "Successfully imported", :status => :success}
-
-      print(@csvs)
 
 =begin
       lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
@@ -103,7 +91,6 @@ class TradesController < ApplicationController
 =end
 
     else
-      print(params)
       parser = CoinParser.new(params, current_user)
       @result = parser.result
     end
