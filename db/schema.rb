@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831195231) do
+ActiveRecord::Schema.define(version: 20170923083301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20170831195231) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "exchange_id"
+    t.decimal "bid", precision: 30, scale: 10, default: "0.0", null: false
+    t.decimal "ask", precision: 30, scale: 10, default: "0.0", null: false
     t.index ["exchange_id"], name: "index_coins_on_exchange_id"
   end
 

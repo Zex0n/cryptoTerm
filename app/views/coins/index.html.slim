@@ -21,6 +21,10 @@
         th
           | Current price
         th
+          | Bid
+        th
+          | Ask
+        th
           | Current volume
         th
           | Exchange
@@ -38,6 +42,10 @@
             = coin.thread
           td
             = price_format coin.current_price
+          td
+            = coin.bid
+          td
+            = coin.ask
           td
             = price_format coin.current_volume
           td

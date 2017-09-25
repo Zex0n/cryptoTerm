@@ -5,7 +5,7 @@ class CoinsController < ApplicationController
   # GET /coins
   # GET /coins.json
   def index
-    @coins = Coin.all
+      @coins = Coin.all
   end
 
   def load
