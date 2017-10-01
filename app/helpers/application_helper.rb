@@ -44,7 +44,14 @@ module ApplicationHelper
   end
 
   def  percent_calculate (price1, price2)
-    number = ((price1 != 0) ? ((price2.to_f / price1.to_f) * 100) : 0.0)
+    # if price2 > price1
+      number = ((price1 != 0) ? (((price2.to_f - price1.to_f) / price1.to_f) * 100) : 0.0)
+      # number = ((price1 != 0) ? ((price2.to_f / price1.to_f) * 100) : 0.0)
+    # else
+    #   number = ((price1 != 0) ? (((price2.to_f - price1.to_f) / price1.to_f) * 100) : 0.0)
+    # end
+
+    # 100*(y-x)/x
     per = "#{number_with_precision number, precision: 2}%"
     content_tag(:span,per)
   end

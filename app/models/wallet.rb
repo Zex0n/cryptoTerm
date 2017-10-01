@@ -9,6 +9,7 @@ class Wallet < ApplicationRecord
     # todo: fix exchanges
     bittrex = Bittrex.new(api.key, api.secret)
     balances = bittrex.balances
+
     return false unless balances
     balances.each do |balance|
       name = balance['Currency']
@@ -34,6 +35,7 @@ class Wallet < ApplicationRecord
     end
 
     Coin.autoupdate
+
   end
 
 end

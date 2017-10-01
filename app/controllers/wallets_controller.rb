@@ -35,6 +35,9 @@ class WalletsController < ApplicationController
   # GET /wallets/1/edit
   def edit
     authorize! :edit, @wallet
+    @trades = Trade.where(:user => current_user, :coin_id => @wallet.coin_id).all
+    print "------------\n\r"
+    print(@trades.inspect)
   end
 
   # POST /wallets

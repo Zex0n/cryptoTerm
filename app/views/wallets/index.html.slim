@@ -64,7 +64,7 @@
             = price_format wallet.coin.current_price if wallet.coin
 
           td
-            = percent_calculate price_format(wallet.buy_price), price_format(wallet.coin.current_price) if wallet.coin and wallet.buy_price
+            = percent_calculate price_format(wallet.buy_price), price_format(wallet.coin.current_price) if wallet.coin and (wallet.buy_price > 0)
 
           td
             = link_to 'Show', wallet

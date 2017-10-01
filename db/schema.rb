@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923083301) do
+ActiveRecord::Schema.define(version: 20170929191000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170923083301) do
     t.decimal "pending", precision: 30, scale: 10, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "buy_price", precision: 30, scale: 10, default: "0.0", null: false
     t.index ["coin_id"], name: "index_wallets_on_coin_id"
     t.index ["exchange_id"], name: "index_wallets_on_exchange_id"
     t.index ["user_id"], name: "index_wallets_on_user_id"
